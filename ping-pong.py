@@ -18,21 +18,24 @@ class GameSprite(sprite.Sprite):
 class Player(GameSprite):
     def update_right(self):
         keys_pressed = key.get_pressed()
-        if keys_pressed[K_UP] and self.rect.y < 425:
-            self.rect.x += self.speed
+        if keys_pressed[K_UP] and self.rect.y < 505:
+            self.rect.y -= self.speed
         if keys_pressed[K_DOWN] and self.rect.y > 5:
-            self.rect.x -= self.speed
+            self.rect.y += self.speed
     def update_left(self):
         keys_pressed = key.get_pressed()
-        if keys_pressed[K_w] and self.rect.y < 425:
-            self.rect.x += self.speed
+        if keys_pressed[K_w] and self.rect.y < 505:
+            self.rect.y -= self.speed
         if keys_pressed[K_s] and self.rect.y > 5:
-            self.rect.x -= self.speed 
+            self.rect.y += self.speed 
 
 
 window = display.set_mode((1000,700))
 display.set_caption('Пинг-понг')
 background = transform.scale(image.load('фон.jpg'),(1000,700))
+player1 = Player('rocket-left.png',5,250,20,150,5)
+player2 = Player('rocket-right.png',975,250,20,150,5)
+
 
 game = True
 finish = False
@@ -45,6 +48,10 @@ while game:
             game = False
 
     window.blit(background,(0,0))
+    player1.reset()
+    player2.reset()
+    player1.update_left()
+    player2.update_right()
 
     clock.tick(FPS)
     display.update()
