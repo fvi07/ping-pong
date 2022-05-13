@@ -18,15 +18,15 @@ class GameSprite(sprite.Sprite):
 class Player(GameSprite):
     def update_right(self):
         keys_pressed = key.get_pressed()
-        if keys_pressed[K_UP] and self.rect.y < 505:
+        if keys_pressed[K_UP] and self.rect.y > 5:
             self.rect.y -= self.speed
-        if keys_pressed[K_DOWN] and self.rect.y > 5:
+        if keys_pressed[K_DOWN] and self.rect.y < 545:
             self.rect.y += self.speed
     def update_left(self):
         keys_pressed = key.get_pressed()
-        if keys_pressed[K_w] and self.rect.y < 505:
+        if keys_pressed[K_w] and self.rect.y > 5:
             self.rect.y -= self.speed
-        if keys_pressed[K_s] and self.rect.y > 5:
+        if keys_pressed[K_s] and self.rect.y < 545:
             self.rect.y += self.speed 
 
 
